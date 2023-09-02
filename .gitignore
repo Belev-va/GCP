@@ -10,4 +10,5 @@
 *.id_rsa.pub*
 *private.ppk*
 *pub*
+*id_rsa*
 

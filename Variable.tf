@@ -1,7 +1,7 @@
 #General variables
 variable "region" {
   type        = string
-  default     = "us-central1"
+  default     = "europe-west1-b"
   description = "The GCP region to deploy resources in."
 }
 
@@ -44,7 +44,7 @@ variable "client_machine_type" {
 
 variable "server_disk_size_gb" {
   type        = string
-  default     = "50"
+  default     = "20"
   description = "The compute engine disk size in GB to use for server instances."
 }
 

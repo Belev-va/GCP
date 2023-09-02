@@ -33,17 +33,10 @@ resource "google_compute_instance" "client" {
   }
   network_interface {
     network = "default"
-    access_config {
+    access_config {}
+  }
 
-    }
-  }
-  service_account {
-    # https://developers.google.com/identity/protocols/googlescopes
-    scopes = [
-      "https://www.googleapis.com/auth/compute.readonly",
-    ]
-  }
   metadata = {
-    ssh-keys = "root:$(file(C:/Users/kissi/IdeaProjects/GCP/pub))"
+    ssh-keys = "root:$(file(C:/Users/kissi/IdeaProjects/GCP/is_rsa.pub))"
   }
 }
