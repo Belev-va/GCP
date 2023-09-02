@@ -35,6 +35,7 @@ resource "google_compute_instance" "client" {
     network = "default"
     access_config {}
   }
+
   metadata_startup_script = "yum install tree"
   metadata = {
     ssh-keys = "root:$(file(C:/Users/kissi/IdeaProjects/GCP/is_rsa.pub))"
