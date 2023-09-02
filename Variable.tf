@@ -32,13 +32,13 @@ variable "client_count" {
 
 variable "server_machine_type" {
   type        = string
-  default     = "n1-standard-2"
+  default     = "e2-medium"
   description = "The compute engine machine type to use for server instances."
 }
 
 variable "client_machine_type" {
   type        = string
-  default     = "n1-standard-2"
+  default     = "e2-medium"
   description = "The compute engine machine type to use for client instances."
 }
 
