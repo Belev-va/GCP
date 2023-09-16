@@ -58,3 +58,23 @@ variable "image" {
   default     = "centos-7-v20230809"
   description = "The GCP image name (built with Packer)."
 }
+variable "ssh_user" {
+  type        = string
+  default     = "root"
+  description = "The GCP default user for ssh connection."
+}
+
+variable "public_key_path" {
+  description = "Path to file containing public key"
+  default     = "C:/Users/kissi/IdeaProjects/GCP/pubkey_gcp"
+}
+
+variable "service_account_email" {
+  description = "The service account e-mail address. If not given, the default Google Compute Engine service account is used. Note: allow_stopping_for_update must be set to true in order to update this field."
+  default     = "131924832816-compute@developer.gserviceaccount.com"
+}
+
+variable "service_account_scopes" {
+  description = "A list of service scopes. Both OAuth2 URLs and gcloud short names are supported. To allow full access to all Cloud APIs, use the cloud-platform scope. Note: allow_stopping_for_update must be set to true in order to update this field."
+  default     = []
+}

@@ -14,7 +14,11 @@ provider "google" {
   region  = var.region
   zone    = var.zone
 }
-
+/*resource "google_compute_project_metadata" "default" {
+  metadata = {
+    ssh-keys = "belev_job:${file("root.pub")}"
+  }
+}*/
 
 resource "google_compute_instance" "client" {
   count        = var.client_count
@@ -36,8 +40,13 @@ resource "google_compute_instance" "client" {
     access_config {}
   }
 
-  metadata_startup_script = "yum install tree"
+
   metadata = {
-    ssh-keys = ""
+    ssh-keys = "howlight:${file("root.pub")}"
+    enable-oslogin : "FALSE"
   }
+  /*service_account {
+    email   = var.service_account_email
+    scopes  = var.service_account_scopes
+  }*/
 }
