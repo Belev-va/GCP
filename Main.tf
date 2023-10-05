@@ -43,6 +43,8 @@ resource "google_compute_instance" "client" {
 
   metadata = {
     ssh-keys = "howlight:${file("root.pub")}"
+    ssh-keys = "howlight:${file("git.pub")}"
+    ssh-keys = "howlight:${file("git2.pub")}"
     enable-oslogin : "FALSE"
   }
   /*service_account {
