@@ -22,7 +22,7 @@ provider "google" {
 
 resource "google_compute_instance" "client" {
   count        = var.client_count
-  name         = "${var.name}-client-${count.index}"
+  name         = "${var.name}-vm-${count.index}"
   machine_type = var.client_machine_type
   zone         = "${var.region}-${var.zone}"
   tags         = ["client", "auto-join"]
@@ -43,8 +43,6 @@ resource "google_compute_instance" "client" {
 
   metadata = {
     ssh-keys = "howlight:${file("root.pub")}"
-    ssh-keys = "howlight:${file("git.pub")}"
-    ssh-keys = "howlight:${file("git2.pub")}"
     enable-oslogin : "FALSE"
   }
   /*service_account {

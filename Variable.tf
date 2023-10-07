@@ -25,7 +25,7 @@ variable "name" {
   description = "The default name to use for resources."
 }
 variable "client_count" {
-  default = "1"
+  default = "2"
 }
 
 #Variables for servers
