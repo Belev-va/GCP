@@ -22,7 +22,7 @@ provider "google" {
 
 resource "google_compute_instance" "client" {
   count        = var.client_count
-  name         = "${var.name}-vm-${count.index}"
+  name         = "${var.name}-client-${count.index}"
   machine_type = var.client_machine_type
   zone         = "${var.region}-${var.zone}"
   tags         = ["client", "auto-join"]
@@ -52,7 +52,7 @@ resource "google_compute_instance" "client" {
 }
 resource "google_compute_instance" "server" {
   count        = var.server_count
-  name         = "${var.name}-vm-${count.index}"
+  name         = "${var.name}-server-${count.index}"
   machine_type = var.server_machine_type
   zone         = "${var.region}-${var.zone}"
   tags         = ["server", "auto-join"]
@@ -77,7 +77,7 @@ resource "google_compute_instance" "server" {
 
 resource "google_compute_instance" "jenkins" {
   count        = 1
-  name         = "jenkins"
+  name         = "${var.name}-jenkins-${count.index}"
   machine_type = var.client_machine_type
   zone         = "${var.region}-${var.zone}"
   tags         = ["jenkis", "auto-join"]
