@@ -35,7 +35,7 @@ variable "server_count" {
 
 variable "server_machine_type" {
   type        = string
-  default     = "n2-standart-2"
+  default     = "n2-standard-2"
   description = "The compute engine machine type to use for server instances."
 }
 
