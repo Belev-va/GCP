@@ -50,3 +50,52 @@ resource "google_compute_instance" "client" {
     scopes  = var.service_account_scopes
   }*/
 }
+resource "google_compute_instance" "server" {
+  count        = var.server_count
+  name         = "${var.name}-vm-${count.index}"
+  machine_type = var.server_machine_type
+  zone         = "${var.region}-${var.zone}"
+  tags         = ["server", "auto-join"]
+
+  allow_stopping_for_update = true
+
+  boot_disk {
+    initialize_params {
+      image = var.image
+      size  = var.server_disk_size_gb
+    }
+  }
+  network_interface {
+    network = "default"
+    access_config {}
+  }
+  metadata = {
+    ssh-keys = "howlight:${file("root.pub")}"
+    enable-oslogin : "FALSE"
+  }
+}
+
+resource "google_compute_instance" "jenkins" {
+  count        = 1
+  name         = "jenkins"
+  machine_type = var.client_machine_type
+  zone         = "${var.region}-${var.zone}"
+  tags         = ["jenkis", "auto-join"]
+
+  allow_stopping_for_update = true
+
+  boot_disk {
+    initialize_params {
+      image = var.image
+      size  = var.client_disk_size_gb
+    }
+  }
+  network_interface {
+    network = "default"
+    access_config {}
+  }
+  metadata = {
+    ssh-keys = "howlight:${file("root.pub")}"
+    enable-oslogin : "FALSE"
+  }
+}

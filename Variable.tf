@@ -25,14 +25,17 @@ variable "name" {
   description = "The default name to use for resources."
 }
 variable "client_count" {
-  default = "2"
+  default = "3"
+}
+variable "server_count" {
+  default = "3"
 }
 
 #Variables for servers
 
 variable "server_machine_type" {
   type        = string
-  default     = "e2-medium"
+  default     = "n2-standart-2"
   description = "The compute engine machine type to use for server instances."
 }
 
