@@ -21,28 +21,28 @@
 # yum install nano
 #----------------------------------------------------------------------------------------------------------------------#
 #3 Install Docker
-#https://docs.docker.com/engine/install/centos/#install-using-the-repository
+# https://docs.docker.com/engine/install/centos/#install-using-the-repository
 
-#sudo yum install -y yum-utils
-#sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+# sudo yum install -y yum-utils
+# sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
-#sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+# sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
-#sudo systemctl start docker
-#sudo systemctl enable docker
+# sudo systemctl start docker
+# sudo systemctl enable docker
 
-#sudo groupadd docker
-#sudo usermod -aG docker ${USER}
+# sudo groupadd docker
+# sudo usermod -aG docker ${USER}
 #----------------------------------------------------------------------------------------------------------------------#
 #4 Install git
 
-#sudo yum update -y
-#sudo yum install git -y
-#git --version
-#git config --global user.name "Belev-va"
-#git config --global user.email "belev.job@gmail.com"
+# sudo yum update -y
+# sudo yum install git -y
+# git --version
+# git config --global user.name "Belev-va"
+# git config --global user.email "belev.job@gmail.com"
 
-#git config --list
+# git config --list
 
 
 
