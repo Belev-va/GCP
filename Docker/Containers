@@ -1,6 +1,18 @@
 Docker containers:
 #0 Postgress
-docker run -d --name postgresCont -p 5432:5432 -e POSTGRES_PASSWORD=pass123 postgres
+docker run
+    --name db
+    -p 5455:5432
+    -e POSTGRES_USER=postgresUser
+    -e POSTGRES_PASSWORD=postgresPW
+    -e POSTGRES_DB=postgresDB
+    -d
+    postgres
+docker run --name db -e POSTGRES_PASSWORD=HowHigh23 -e POSTGRES_DB=postgres POSTGRES_USER=postgres -p 5432:5432 -v dbhowlight:/var/lib/postgresql/data -d postgres:13.3
+
+docker run -d --name db -p 5432:5432 -e POSTGRES_PASSWORD=pass123 postgres
+docker run --name db -e POSTGRES_PASSWORD_FILE=/run/secrets/postgres-passwd -d postgres
+
 docker exec -it some-postgres bash
 postgres#
 psql -h localhost -U docker_user
@@ -15,9 +27,10 @@ psql -h localhost -U docker_user
  );
  \d creators
  \dt
+ insert into creators values (0, 'Felix', 'Kissinger', 'felix@gmail.com', 32);
  insert into creators values  (1, 'Luka', 'Fingastation', 'finga@gmail.com' );
  insert into creators values (2, 'Nini', 'Banidze', 'nini@gmail.com', 32);
- insert into creators values (0, 'Felix', 'Kissinger', 'felix@gmail.com', 32), (1, 'Luka', 'Fingastation', 'finga@gmail.com' );
+
  select * from creators;
 
 
@@ -28,6 +41,36 @@ docker run --name learn_postgres -e POSTGRES_PASSWORD=docker_user -e POSTGRES_US
 docker exec -it db bash
 
 /var/lib/docker/volumes/db/
+
+version: "3.8"
+services:
+  db:
+    image: postgres
+    container_name: local_pgdb
+    restart: always
+    ports:
+      - "8080:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: HowHigh23
+      POSTGRES_DB: postgres
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: strong-password
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  local_pgdata:
+  pgadmin-data:
 
 
 #2 Tomcat
@@ -47,5 +90,3 @@ docker exec -it b5bd984be9a1 bash
 cd /opt/jboss/wildfly/bin
 sh add-user.sh
 
-
-find / -type d -name 'httpdocs'
