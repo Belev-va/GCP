@@ -10,7 +10,7 @@ terraform {
 provider "google" {
   credentials = file("howlight-398ab17777d1.json")
 
-  project = "howlight"
+  project = "howlightuniversity-000001"
   region  = var.region
   zone    = var.zone
 }
@@ -54,7 +54,7 @@ resource "google_compute_instance" "client" {
 
 
   metadata = {
-    ssh-keys = "howlight:${file("root.pub")}"
+    ssh-keys = "howlight:${file("root3.pub")}"
     enable-oslogin : "FALSE"
   }
   /*service_account {
@@ -82,7 +82,7 @@ resource "google_compute_instance" "server" {
     access_config {}
   }
   metadata = {
-    ssh-keys = "howlight:${file("root.pub")}"
+    ssh-keys = "howlight:${file("root3.pub")}"
     enable-oslogin : "FALSE"
   }
 }
@@ -107,11 +107,11 @@ resource "google_compute_instance" "jenkins" {
     access_config {}
   }
   metadata = {
-    "ssh-keys" = <<EOT
-        "howlight:${file("root.pub")}"
-        "howlight:${file("root2.pub")}"
-    EOT
-    #ssh-keys = "howlight:${file("root.pub")}"
+    #"ssh-keys" = <<EOT
+        #"howlight:${file("root.pub")}"
+        #"howlight:${file("root2.pub")}"
+    #EOT
+    ssh-keys = "howlight:${file("root.pub")}"
 
     enable-oslogin : "FALSE"
   }

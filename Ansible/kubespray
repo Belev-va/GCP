@@ -1,0 +1,28 @@
+mkdir kubespray
+git clone git@github.com:kubernetes-sigs/kubespray.git
+yum install epel-release
+yum install ansible
+
+#Python3.7
+yum install gcc openssl-devel bzip2-devel libffi-devel zlib-devel xz-devel
+cd /usr/src
+wget https://www.python.org/ftp/python/3.7.11/Python-3.7.11.tgz
+tar xzf Python-3.7.11.tgz
+cd Python-3.7.11
+./configure --enable-optimizations
+make altinstall
+rm /usr/src/Python-3.7.11.tgz
+export PATH="/usr/local/bin:$PATH"
+source ~/.bash_profile
+
+
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3.7 get-pip.py
+
+
+
+virtualenv -p python3 ./venv-kube
+source ./venv-kube/bin/activate
+pip install -r ./requirements.txt
+
+ansible-playboock -i inventory/felix/inventory.ini --private-key /home/howlight/.ssh/id_rsa.pub --user howlight --become --become-user=root cluster.yml
