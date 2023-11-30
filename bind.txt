@@ -1,0 +1,42 @@
+squid настроить для yum
+
+Делать конфиг динамическим
+/usr/local/samba/private/named.conf
+
+________________________________________
+firewall-cmd --permanent --add-port=53/udp
+sudo firewall-cmd --permanent --add-port=53/udp
+sudo firewall-cmd --reload
+sudo yum install bind -y
+sudo nano /etc/named.conf
+
+sudo chgrp named -R /var/named
+sudo chown -v root:named /etc/named.conf
+sudo restorecon -rv /var/named
+sudo restorecon -rv /var/named
+
+
+sudo systemctl enable named
+sudo systemctl start named
+
+
+cd /etc/
+sudo nano gointra.com.zone
+sudo nano reverse.zone
+sudo cp gointra.com.zone /var/named/gointra.com.zone
+sudo cp reverse.zone /var/named/reverse.zone
+
+sudo named-checkconf /etc/named.conf
+sudo named-checkzone gointra.com /var/named/gointra.com.zone
+sudo named-checkzone gointra.com /var/named/reverse.zone
+sudo systemctl restart named
+
+sudo yum install bind-utils
+
+ping gointra.net
+
+sudo echo 'pathmunge /usr/local/samba/bin/' |sudo tee -a /etc/profile.d/custompath.sh
+sudo chmod +x /etc/profile.d/custompath.sh
+
+
+
