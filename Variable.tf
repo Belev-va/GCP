@@ -25,10 +25,10 @@ variable "name" {
   description = "The default name to use for resources."
 }
 variable "client_count" {
-  default = "4"
+  default = "0"
 }
 variable "server_count" {
-  default = "3"
+  default = "0"
 }
 
 #Variables for servers
@@ -80,4 +80,7 @@ variable "service_account_email" {
 variable "service_account_scopes" {
   description = "A list of service scopes. Both OAuth2 URLs and gcloud short names are supported. To allow full access to all Cloud APIs, use the cloud-platform scope. Note: allow_stopping_for_update must be set to true in order to update this field."
   default     = []
+}
+data "http" "myip" {
+  url = "http://ipv4.icanhazip.com"
 }
