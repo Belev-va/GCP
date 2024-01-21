@@ -1,10 +1,10 @@
+                                //---GCP---\\
 #General variables
 variable "region" {
   type        = string
   default     = "europe-west1"
   description = "The GCP region to deploy resources in."
 }
-
 variable "zone" {
   type        = string
   default     = "b"
@@ -17,45 +17,30 @@ variable "cidr_range" {
   description = "The IP CIDR range to use for the cluster's VPC subnetwork."
 }
 
-#Another variables
-
-variable "name" {
-  type        = string
-  default     = "howlight"
-  description = "The default name to use for resources."
+variable "instance_count" {
+   type        = string
+   default     = "2"
+   description = "Count of instances"
 }
-variable "client_count" {
-  default = "0"
-}
-variable "server_count" {
-  default = "0"
-}
+ variable "instance_name" {
+   type        = string
+   default     = "k8s"
+   description = "Name for instances."
+ }
+# Configuration variables
 
-#Variables for servers
-
-variable "server_machine_type" {
-  type        = string
-  default     = "n2-standard-2"
-  description = "The compute engine machine type to use for server instances."
-}
-
-variable "client_machine_type" {
+variable "instance_type" {
   type        = string
   default     = "e2-medium"
   description = "The compute engine machine type to use for client instances."
 }
 
-variable "server_disk_size_gb" {
+variable "disk_size" {
   type        = string
   default     = "20"
   description = "The compute engine disk size in GB to use for server instances."
 }
 
-variable "client_disk_size_gb" {
-  type        = string
-  default     = "20"
-  description = "The compute engine disk size in GB to use for client instances."
-}
 variable "image" {
   type        = string
   default     = "centos-7-v20230809"
@@ -84,3 +69,27 @@ variable "service_account_scopes" {
 data "http" "myip" {
   url = "http://ipv4.icanhazip.com"
 }
+
+                                        //-----aws---\\\
+ /*
+
+variable "instance_subnet_id" {
+  type        = list(string)
+  default     = []
+  description = "Subnet id for instance."
+}
+
+variable "instance_security_group" {
+  type        = list(string)
+  default     = []
+  description = "Security group for instance."
+}
+
+variable "instance_key_name" {
+  type        = string
+  default     = "deployer-key"
+  description = "Key name for instance"
+}
+
+*/
+
