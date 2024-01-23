@@ -20,7 +20,7 @@ resource "google_compute_instance" "instance" {
     access_config {}
   }
   metadata = {
-    ssh-keys = "howlight:${file("root3.pub")}"
+    ssh-keys = "howlight:${file("root.pub")}"
     enable-oslogin : "FALSE"
   }
 

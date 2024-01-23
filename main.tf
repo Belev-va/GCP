@@ -37,3 +37,10 @@ module "worker_nods" {
   #instance_security_group = [module.security_group.public_security_group_id]
 }
 
+module "jenkins_nods" {
+  source                  = "./instance"
+  instance_name           = "jenkins"
+  instance_count          = 1
+  #instance_subnet_id      = module.network.public_subnet_id
+  #instance_security_group = [module.security_group.public_security_group_id]
+}
