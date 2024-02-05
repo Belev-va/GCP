@@ -1,0 +1,3 @@
+source venv/bin/activate
+ansible --version
+ansible-playbook -i inventory/sample/inventory.ini --private-key ~/.ssh/id_rsa --user howlight --become --become-user=root disable_selinux.yml
